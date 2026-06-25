@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate hilarious, unique, and totally random silly stories with custom names and automatic unit conversions. Built with vanilla JS.">
+  <title>Random Silly Story Generator</title>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Lucide icons via CDN for modern look -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glass-bg"></div>
+  <div class="container">
+    <header class="app-header">
+      <div class="icon-wrapper">
+        <i data-lucide="sparkles" class="logo-icon animate-float"></i>
+      </div>
+      <h1 id="app-title">Random Silly Story Generator</h1>
+      <p id="app-description">Enter a name, select your preferred units, and click <strong>Generate Story</strong> to create a uniquely bizarre and hilarious tale!</p>
+    </header>
+
+    <main class="main-content">
+      <!-- Input Card -->
+      <section class="card control-card" aria-labelledby="form-heading">
+        <h2 id="form-heading" class="sr-only">Story Parameters</h2>
+        
+        <!-- Name Input Group -->
+        <div class="input-group">
+          <label for="custom-name">Enter Hero's Name</label>
+          <div class="input-wrapper">
+            <i data-lucide="user" class="input-icon"></i>
+            <input type="text" id="custom-name" placeholder="Bob (or leave blank for random)" autocomplete="off" maxlength="30">
+          </div>
+        </div>
+
+        <!-- Unit Selector Group -->
+        <div class="input-group">
+          <span class="label-heading">Measurement Units</span>
+          <div class="unit-selector">
+            <input type="radio" id="unit-us" name="unit-system" value="us" checked>
+            <label for="unit-us" class="unit-label">
+              <i data-lucide="globe"></i>
+              <span>US Units (°F / lbs)</span>
+            </label>
+
+            <input type="radio" id="unit-uk" name="unit-system" value="uk">
+            <label for="unit-uk" class="unit-label">
+              <i data-lucide="milestone"></i>
+              <span>UK Units (°C / stone)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Button Panel -->
+        <div class="button-group">
+          <button id="btn-generate" type="button" class="btn btn-primary">
+            <i data-lucide="wand2"></i>
+            <span>Generate Story</span>
+          </button>
+          <button id="btn-reset" type="button" class="btn btn-secondary">
+            <i data-lucide="rotate-ccw"></i>
+            <span>Reset App</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Output Card -->
+      <section class="card story-card" aria-labelledby="story-heading">
+        <h2 id="story-heading" class="sr-only">Generated Story Output</h2>
+        
+        <!-- Empty / Welcome State -->
+        <div id="story-empty" class="story-state">
+          <div class="empty-icon-wrapper">
+            <i data-lucide="book-open" class="empty-icon"></i>
+          </div>
+          <h3>Your story awaits...</h3>
+          <p>Configure the options and hit generate. Let's see what crazy situation our hero gets into!</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="story-loading" class="story-state hidden">
+          <div class="spinner-wrapper">
+            <div class="spinner"></div>
+          </div>
+          <h3>Brewing a silly tale...</h3>
+          <p>Mixing ingredients, adding spices, and logic check...</p>
+        </div>
+
+        <!-- Content State -->
+        <div id="story-content" class="story-state hidden">
+          <div class="story-meta">
+            <span class="story-badge" id="story-number">Story #1</span>
+            <span class="story-time" id="story-timestamp"><i data-lucide="calendar"></i> 2026-06-25 11:22</span>
+          </div>
+          <div class="story-text-container">
+            <p id="story-text" class="story-text"></p>
+          </div>
+          <div class="story-actions">
+            <button id="btn-copy" type="button" class="btn btn-tertiary">
+              <i data-lucide="copy" class="btn-icon"></i>
+              <span class="btn-text">Copy Story</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Made with <i data-lucide="heart" class="heart-icon"></i> using Vanilla HTML, CSS, and JS</p>
+    </footer>
+  </div>
+
+  <!-- Toast notification for copy confirmation -->
+  <div id="copy-toast" class="toast hidden">
+    <i data-lucide="check-circle" class="toast-icon"></i>
+    <span>Story copied to clipboard!</span>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
